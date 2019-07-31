@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="container">
+  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/7/74/Paymentwall_logo.svg">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Amount"
+      type="number"
+      class="example-right-align"
+      formControlName="amount"
+    >
+    <mat-error *ngIf="form.get('amount').invalid && form.get('amount').touched">{{getErrorMessage()}}</mat-error>
+    <span matPrefix>$&nbsp;</span>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Choose country</mat-label>
+    <mat-select (selectionChange)="getInfo($event.value)">
+      <mat-option *ngFor="let c of countries" [value]="c.alpha">
+        {{c.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group">
+    <mat-radio-button class="example-radio-button" *ngFor="let p of paymentMethods" [value]="p.name">
+      <div class="methods">
+        <img [src]="p.img">
+        <span>{{p.name}}</span>
+      </div>
+    </mat-radio-button>
+  </mat-radio-group>
+  <button [disabled]="form.invalid" type="submit" *ngIf="paymentMethods" mat-raised-button>
+    Confirm
+  </button>
+</form>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate-multiple"
+></ngx-spinner>

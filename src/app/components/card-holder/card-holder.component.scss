@@ -1,0 +1,25 @@
+.container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 2%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(#f3f3f3, rgba(211, 211, 211, 0.88));
+    padding: 10px;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  td {
+    padding-right: 8px;
+  }
+}

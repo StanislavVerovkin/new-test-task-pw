@@ -21,10 +21,12 @@ export class CardHolderComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       firstName: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern('^[a-zA-Z ]*$')
       ]),
       lastName: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern('^[a-zA-Z ]*$')
       ]),
       cardNumber: new FormControl('', [
         Validators.required,
@@ -38,6 +40,7 @@ export class CardHolderComponent implements OnInit {
       cvv: new FormControl('', [
         Validators.minLength(3),
         Validators.required,
+        Validators.pattern('^[0-9]*$'),
         ValidateCvv
       ])
     });
@@ -45,31 +48,55 @@ export class CardHolderComponent implements OnInit {
   }
 
   getErrorMessage(controlName) {
+
     if (
       this.form.controls[controlName].hasError('required')
       && this.form.controls[controlName] === this.form.controls.cardNumber
     ) {
       return 'Card number is required';
+
     } else if (
       this.form.controls[controlName].hasError('pattern')
       && this.form.controls[controlName] === this.form.controls.cardNumber
     ) {
       return 'Invalid card format';
+
     } else if (
       this.form.controls.firstName.hasError('required')
       && this.form.controls[controlName] === this.form.controls.firstName
     ) {
       return 'First name is required';
+
+    } else if (
+      this.form.controls[controlName].hasError('pattern')
+      && this.form.controls[controlName] === this.form.controls.firstName
+    ) {
+      return 'Only characters';
+
+    } else if (
+      this.form.controls[controlName].hasError('pattern')
+      && this.form.controls[controlName] === this.form.controls.lastName
+    ) {
+      return 'Only characters';
+
     } else if (
       this.form.controls[controlName].hasError('required')
       && this.form.controls[controlName] === this.form.controls.lastName
     ) {
       return 'Last name is required';
+
+    } else if (
+      this.form.controls[controlName].hasError('pattern')
+      && this.form.controls[controlName] === this.form.controls.cvv
+    ) {
+      return 'Only numbers';
+
     } else if (
       this.form.controls[controlName].hasError('required')
       && this.form.controls[controlName] === this.form.controls.cvv
     ) {
       return 'CVV is required';
+
     } else if (
       this.form.controls[controlName].errors.invalidCvv
       && this.form.controls[controlName] === this.form.controls.cvv

@@ -22,11 +22,11 @@ export class CardHolderComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z ]*$')
+        Validators.pattern('^[a-zA-Z ]*$') // Only characters
       ]),
       lastName: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z ]*$')
+        Validators.pattern('^[a-zA-Z ]*$') // Only characters
       ]),
       cardNumber: new FormControl('', [
         Validators.required,
@@ -40,7 +40,7 @@ export class CardHolderComponent implements OnInit {
       cvv: new FormControl('', [
         Validators.minLength(3),
         Validators.required,
-        Validators.pattern('^[0-9]*$'),
+        Validators.pattern('^[0-9]*$'), // Only numbers
         ValidateCvv
       ])
     });

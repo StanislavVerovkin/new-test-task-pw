@@ -10,12 +10,14 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {AppComponent} from './app.component';
 import {CardHolderComponent} from './components/card-holder/card-holder.component';
 import {MainComponent} from './components/main/main.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardHolderComponent,
     MainComponent,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import {MainComponent} from './components/main/main.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

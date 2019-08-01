@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
     <h3>Total amount: ${{amount}}</h3>
     <table class="full-width" cellspacing="0">
       <tr>
@@ -7,7 +7,7 @@
           <mat-form-field class="full-width">
             <input formControlName="firstName" matInput placeholder="First name">
             <mat-error *ngIf="form.get('firstName').invalid && form.get('firstName').touched">
-              {{getErrorMessage('firstName', 'required', 'Name is required')}}
+              {{getErrorMessage('firstName')}}
             </mat-error>
           </mat-form-field>
         </td>
@@ -15,7 +15,7 @@
           <mat-form-field class="full-width">
             <input formControlName="lastName" matInput placeholder="Last name">
             <mat-error *ngIf="form.get('lastName').invalid && form.get('lastName').touched">
-              {{getErrorMessage('lastName', 'required', 'Last name is required')}}
+              {{getErrorMessage('lastName')}}
             </mat-error>
           </mat-form-field>
         </td>
@@ -24,24 +24,20 @@
     <mat-form-field class="full-width">
       <input formControlName="cardNumber" matInput placeholder="Card number">
       <mat-error *ngIf="form.get('cardNumber').invalid && form.get('cardNumber').touched">
-        {{getErrorMessage('cardNumber', 'pattern', 'Invalid credit card format')}}
+        {{getErrorMessage('cardNumber')}}
       </mat-error>
     </mat-form-field>
     <table class="full-width" cellspacing="0">
       <tr>
         <td>
-          <mat-form-field class="full-width">
-            <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Expiration date">
-            <mat-error *ngIf="form.get('date').invalid && form.get('date').touched">
-              {{getErrorMessage('date', 'required', 'Date is required')}}
-            </mat-error>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #picker></mat-datepicker>
-          </mat-form-field>
+          <app-date-picker></app-date-picker>
         </td>
         <td>
           <mat-form-field class="full-width">
             <input type="password" formControlName="cvv" matInput #postalCode maxlength="3" placeholder="CVV">
+            <mat-error *ngIf="form.get('cvv').invalid && form.get('cvv').touched">
+              {{getErrorMessage('cvv')}}
+            </mat-error>
             <mat-hint align="end">{{postalCode.value.length}} / 3</mat-hint>
           </mat-form-field>
         </td>

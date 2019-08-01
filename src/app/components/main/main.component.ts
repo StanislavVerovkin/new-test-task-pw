@@ -15,7 +15,7 @@ import {MatSnackBar} from '@angular/material';
 export class MainComponent implements OnInit {
 
   public countries: CountryModel[];
-  public paymentMethods = {};
+  public paymentMethods: any[];
   public form: FormGroup;
 
   constructor(
@@ -29,6 +29,9 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       amount: new FormControl('', [
+        Validators.required
+      ]),
+      methods: new FormControl('', [
         Validators.required
       ])
     });
@@ -48,14 +51,21 @@ export class MainComponent implements OnInit {
     this.spinner.show();
     this.apiService.getAdditionalInfo(event)
       .subscribe(
-        (data: any[]) => {
-          this.paymentMethods = data.map((item: InfoModel) => {
-            return {
-              name: item.name,
-              img: item.img_url,
-            };
-          });
-          this.spinner.hide();
+        (res: any[]) => {
+          if (res) {
+            this.paymentMethods = res.map((item: InfoModel) => {
+              return {
+                name: item.name,
+                img: item.img_url,
+              };
+            });
+            this.spinner.hide();
+          } else {
+            this.snackBar.open('No data', 'Close', {
+              duration: 5000
+            });
+            this.spinner.hide();
+          }
         },
         data => {
           this.snackBar.open(data.error.error, 'Close', {

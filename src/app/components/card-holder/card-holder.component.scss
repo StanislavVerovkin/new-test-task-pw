@@ -22,4 +22,16 @@
   td {
     padding-right: 8px;
   }
+
+  .cards {
+
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+
+    img {
+      margin: 2px;
+      width: 40px;
+    }
+  }
 }

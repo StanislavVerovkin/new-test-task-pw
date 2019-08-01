@@ -34,15 +34,22 @@
         </td>
         <td>
           <mat-form-field class="full-width">
-            <input type="password" formControlName="cvv" matInput #postalCode maxlength="3" placeholder="CVV">
+            <input type="password" formControlName="cvv" matInput #limitSymbols maxlength="3" placeholder="CVV">
             <mat-error *ngIf="form.get('cvv').invalid && form.get('cvv').touched">
               {{getErrorMessage('cvv')}}
             </mat-error>
-            <mat-hint align="end">{{postalCode.value.length}} / 3</mat-hint>
+            <mat-hint align="end">{{limitSymbols.value.length}} / 3</mat-hint>
           </mat-form-field>
         </td>
       </tr>
     </table>
-    <button [disabled]="form.invalid" type="submit" mat-raised-button>Pay</button>
+    <div class="cards">
+      <button [disabled]="form.invalid" type="submit" mat-raised-button>Pay</button>
+      <div class="images">
+        <img src="https://image.flaticon.com/icons/svg/217/217425.svg">
+        <img src="https://image.flaticon.com/icons/svg/217/217423.svg">
+        <img src="https://image.flaticon.com/icons/svg/217/217424.svg">
+      </div>
+    </div>
   </form>
 </div>

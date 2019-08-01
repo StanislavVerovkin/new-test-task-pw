@@ -20,6 +20,7 @@
     </mat-select>
   </mat-form-field>
   <mat-radio-group
+    formControlName="methods"
     aria-labelledby="example-radio-group-label"
     class="example-radio-group">
     <mat-radio-button class="example-radio-button" *ngFor="let p of paymentMethods" [value]="p.name">
